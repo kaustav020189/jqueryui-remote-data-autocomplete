@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>jQuery UI Autocomplete - Remote Datasource</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<style>
+    body{
+        background: #e9e9e9
+    }
+    img{
+        max-width: 100%;
+    }
+    #wrapper{
+        margin: 50px auto;text-align: center;width: 50%;height: auto;background: #fff;
+        border: 1px solid #ccc;padding-bottom: 50px
+    }
+    #wrapper_heading2{
+        height: 70px;margin: 50px 25% 0 25%;font-size: 28px;color: #e56a0f
+    }
+    .inputs{
+        margin-top: 50px;border: 1px solid #e5e5e5;
+        height: 50px;width: 300px;padding-left: 20px;color: #e56a0f;outline: 0;
+        
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+    }
+    #result{
+        width: 100%;padding-top: 50px;font-size: 22px;letter-spacing: 1px;line-height: 25px;color: #999    
+    }
+    
+    #share{
+        position: fixed;z-index: 9999;top: 50px;left: 20px;width: 200px;height: 500px;background: #fff;
+        border: 1px solid #ccc
+    }
+    ul li{
+        display: block;margin: 30px auto
+    }
+    .notify{
+        width: auto;height: auto;overflow: auto;margin-left: 50px;border: 3px dashed #aaa;background: #fff;
+        position: absolute;z-index: 5000;padding: 20px;display: none;
+    }
+    #addtopic{
+        width: 80%;height: auto;overflow: auto;border: 1px solid #ccc;padding-bottom: 20px;text-align: center;display: none;
+        margin: 50px auto;font-size: 18px;color: #999
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $("#addrecord").hover(function(){
+            $(".notify").fadeIn("500");
+        },function(){
+            $(".notify").fadeOut("500");
+        });
+        
+        $("#addrecord").click(function(){
+            $("#addtopic").slideDown("500");
+        });
+        
+        $("#add").keydown(function(e){
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        if(keycode == 13){
+                    $("#add").hide();
+                    var value = $("#add").val();
+                    $.post("save.php",{value:value}, function(data){
+                        $("#addtopic").html(data);
+                        setTimeout("location.reload(true);",5);
+                    });
+                }
+            });   
+    });
+</script>
+<script>
+$(function() {
+function log( message ) {
+$( "#result" ).text(message);
+$( "body" ).scrollTop( 0 );
+}
+$( "#test" ).autocomplete({
+source: "search.php",
+minlength: 1,
+select: function( event, ui ) {
+log( ui.item ?
+"Selected Topic: " + ui.item.value :
+"Nothing selected, input was " + this.value );
+}
+});
+});
+</script>
+
+
+</head>
+<body>
+   <div id="fb-root"></div>
+
+<script>(function(d, s, id) {
+
+  var js, fjs = d.getElementsByTagName(s)[0];
+
+  if (d.getElementById(id)) return;
+
+  js = d.createElement(s); js.id = id;
+
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+
+  fjs.parentNode.insertBefore(js, fjs);
+
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <div id="wrapper">
+        <div id="wrapper_heading2">Dynamic Autocomplete</div>
+        <div id="main">
+            <input type="text" name="test" id="test" class="inputs"/>
+        </div>
+        <div id="result">
+            
+        </div>
+        <div style="margin-top: 50px">
+            <a href="#" id="addrecord">Add my custom topic name to database</a>
+            <span class="notify">
+                Add extra topic names. <br />
+                They are not appearing in the suggestions now. <br />
+                Add them to the database and they will appear <br />
+            </span>
+        </div>
+        <div id="addtopic">
+            Enter topic name and press enter<br />
+            <input name="add" id="add" class="inputs" />
+        </div>
+        <div style="font-size: 20px;margin-top: 100px">
+            <a href="http://www.a100websolutions.in/jqueryui-autocomplete-tutorial/">Tutorial link. Click here.</a>
+        </div>
+    </div>
+    <div id="share">
+        <ul>
+                                <li>
+                                    <div class="fb-like" data-href="http://www.projects.a100websolutions.in/jqueryui-autocomplete/" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+                                </li>
+                                <li>
+                                    <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60" data-href="http://www.projects.a100websolutions.in/jqueryui-autocomplete/"></div>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.projects.a100websolutions.in/jqueryui-autocomplete/" data-count="vertical" data-via="a100websolution" data-hashtags="coding-tutorials"></a>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                </li>				
+				<li>                                  
+                                    <a href="//pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.projects.a100websolutions.in%2Fjqueryui-autocomplete%2F&media=http%3A%2F%2Fwww.projects.a100websolutions.in%2Fjqueryui-autocomplete%2Fimages%2Flogo.png&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="above">
+                                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+				</li>				
+                            </ul> 
+    </div>
+</body>
+<script type="text/javascript">
+
+  (function() {
+
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+
+    po.src = 'https://apis.google.com/js/plusone.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+
+  })();
+
+</script>
+
+<!-- Next line for Pinterest -->
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+</html>
