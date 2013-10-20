@@ -6,3 +6,7 @@ JQuery UI Autocomplete functionality for remote data source using JQuery. Full c
 In this repository, I have include an added functionality where the autocomplete suggestion list can be updated with more elements.
 So, the basic concept is that we can add more records to the database along with the autocomplete functionality in the same
 page. Thus, you can add suggestions to the list. 
+
+To see the worrking demo, visit http://projects.a100websolutions.in/jqueryui-autocomplete/
+
+To read the tutorial, visit http://a100websolutions.in/jqueryui-autocomplete-tutorial/
